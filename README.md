@@ -29,25 +29,47 @@ git pull後に
 
     $ docker exec -ti <name> bash
 
-ファイルの取り出し
+### コンテナイメージのファイル操作
+
+イメージのバックアップ
+
+    $ docker save <name> > filename.tar
+
+イメージのリストア
+
+    $ docker <name> < filename.tar
+
+コンテナのバックアップ
+
+    $ docker export <containerID> > filename.tar
+
+コンテナからイメージを作成する
+
+    $ docker commit <containerID> <repository>[:<tag>]
+
+URLを指定してイメージを取り込む
+
+    $ docker import <url> <repository>[:<tag>]
+
+ファイルからイメージを取り込む
+
+    $ cat filename.tar | docker import - <repository>[:<tag>]
+
+コンテナの標準出力を見る
+
+    $ docker logs <containerID>
+
+コンテナ内のファイルをホストにコピーする
 
     $ docker cp <containerID>:<path> .
 
-### ボリュームのバックアップ、修復、移行
+イメージがコンテナ化されてから変更されたファイル差分を得る
 
-ボリュームに関する他の便利な事としては、ボリュームをバックアップやレストア、マイグレーションのために使う事です。使うためには --volumes-from フラグを使って、新しいコンテナを使ってボリュームをマウントします。使うには、次のようにします。
+    $ docker diff <containerID>
 
-    $ docker run --volumes-from dbdata -v $(pwd):/backup <name> tar cvf /backup/backup.tar /dbdata
-
-ここでは私たちは新しいコンテナを起動し、 dbdata コンテナにボリュームをマウントすることが出来ます。
-ここではローカルホストのディレクトリを /backup としてマウントしました。最後に、コマンド tar を通して dbdata ボリュームを /backup ディレクトリの backup.tar ファイルに、バックアップします。コマンドの処理が完了しコンテナを停止すると、dbdata ボリュームのバックアップが完了します。
-次からは、同じコンテナだけでなく、他のコンテナからでもどこでもリストアが可能です。新しくコンテナを作る時に、
-
-    $ docker run -v /dbdata --name dbdata2 <name> /bin/bash
-
-あるいは新しいコンテナのデータボリュームに、バックアップファイルを展開することが出来ます。
-
-    $ docker run --volumes-from dbdata2 -v $(pwd):/backup <tag>/storage tar xvf /backup/backup.tar
+URLのファイルをイメージ内のPATHに生成する
+    
+    $ docker insert <name> <url> <path>
 
 ### License
 
