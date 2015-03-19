@@ -37,7 +37,7 @@ git pull後に
 
 イメージのリストア
 
-    $ docker <name> < filename.tar
+    $ docker load < filename.tar
 
 コンテナのバックアップ
 
