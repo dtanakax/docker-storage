@@ -31,17 +31,35 @@ git pull後に
 
 ### コンテナイメージのファイル操作
 
-イメージのバックアップ
+ボリュームに関する他の便利な事としては、ボリュームをバックアップやレストア、マイグレーションのために使う事です。使うためには --volumes-from フラグを使って、新しいコンテナを使ってボリュームをマウントします。使うには、次のようにします。
+
+    $ docker run --name backup --volumes-from wordpress -v $(pwd):/home tanaka0323/storage tar cvf /home/wordpress.tar /var/www/html /var/lib/mysql
+home
+ここでは私たちは新しいコンテナを起動し、 wordpress コンテナにボリュームをマウントすることが出来ます。
+ここではローカルホストのディレクトリを /home としてマウントしました。最後に、コマンド tar を通して wordpress ボリュームを /home ディレクトリの wordpress.tar /var/www/html /var/lib/mysql ボリュームのバックアップが完了します。
+次からは、同じコンテナだけでなく、他のコンテナからでもどこでもリストアが可能です。新しくコンテナを作る時に、
+
+    $ docker run -v /var/www/html -v /var/lib/mysql --name wordpress backup /bin/bash
+
+あるいは新しいコンテナのデータボリュームに、バックアップファイルを展開することが出来ます。
+
+    $ docker run --volumes-from backup -v /var/www/html -v /var/lib/mysql tanaka0323/storage tar xvf /backup/backup.tar
+
+イメージのファイル保存 (差分を含む)
 
     $ docker save <name> > filename.tar
 
-イメージのリストア
+イメージのファイルロード
 
     $ docker load < filename.tar
 
-コンテナのバックアップ
+コンテナのエクスポート (差分を含まない。すべての履歴情報が失われる)
 
-    $ docker export <containerID> > filename.tar
+    $ docker export <name> > filename.tar
+
+コンテナのインポート
+
+    $ cat filename.tar | docker import - <repository>[:<tag>]
 
 コンテナからイメージを作成する
 
