@@ -2,4 +2,4 @@
 FROM progrium/busybox
 
 # File Author / Maintainer
-MAINTAINER tanaka@infocorpus.com
+MAINTAINER Daisuke Tanaka, tanaka@infocorpus.com
