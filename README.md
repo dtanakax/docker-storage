@@ -2,14 +2,14 @@
 
 ### Base Docker Image
 
-[progrium/busybox](https://github.com/progrium/busybox "progrium/busybox")
+[progrium/busybox](https://github.com/progrium/busybox)
 
 ### 説明
 
 永続的なデータ格納用Dockerコンテナイメージです。
 
-[Dockerとは？](https://docs.docker.com/ "Dockerとは？")  
-[Docker Command Reference](https://docs.docker.com/reference/commandline/cli/ "Docker Command Reference")
+[Dockerとは？](https://docs.docker.com/)  
+[Docker Command Reference](https://docs.docker.com/reference/commandline/cli/)
 
 ### 使用方法
 
@@ -19,11 +19,11 @@ git pull後に
 
 イメージ作成
 
-    $ docker build -t <tag>/storage .
+    $ docker build -t tanaka0323/storage .
 
 起動
 
-    $ docker run --name <name> -d -ti <tag>/storage
+    $ docker run --name <name> -d -ti tanaka0323/storage
 
 コンテナ内へログイン
 
