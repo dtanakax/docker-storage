@@ -1,17 +1,23 @@
-# docker-storage
+![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
-### Base Docker Image
+docker-storage
+=====================
+
+Base Docker Image
+---------------------
 
 [progrium/busybox](https://github.com/progrium/busybox)
 
-### 説明
+説明
+---------------------
 
 永続的なデータ格納用Dockerコンテナイメージです。
 
 [Dockerとは？](https://docs.docker.com/)  
 [Docker Command Reference](https://docs.docker.com/reference/commandline/cli/)
 
-### 使用方法
+使用方法
+---------------------
 
 git pull後に
 
@@ -29,7 +35,8 @@ git pull後に
 
     $ docker exec -ti <name> bash
 
-### コンテナイメージのファイル操作
+コンテナイメージのファイル操作
+---------------------
 
 ボリュームに関する他の便利な事としては、ボリュームをバックアップやレストア、マイグレーションのために使う事です。使うためには --volumes-from フラグを使って、新しいコンテナを使ってボリュームをマウントします。使うには、次のようにします。
 
@@ -89,7 +96,8 @@ URLのファイルをイメージ内のPATHに生成する
     
     $ docker insert <name> <url> <path>
 
-### License
+License
+---------------------
 
 The MIT License
 Copyright (c) 2015 Daisuke Tanaka
