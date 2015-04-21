@@ -11,7 +11,7 @@ Base Docker Image
 説明
 ---------------------
 
-永続的なデータ格納用Dockerコンテナイメージです。
+永続的なデータ格納用Dockerコンテナ作成設定
 
 [Dockerとは？](https://docs.docker.com/)  
 [Docker Command Reference](https://docs.docker.com/reference/commandline/cli/)
