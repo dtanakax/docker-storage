@@ -16,14 +16,6 @@ Base Docker Image
 使用方法
 ---------------------
 
-git pull後に
-
-    $ cd docker-storage
-
-イメージ作成
-
-    $ docker build -t dtanakax/storage .
-
 起動
 
     $ docker run --name <name> -d -ti dtanakax/storage
