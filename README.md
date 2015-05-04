@@ -22,11 +22,11 @@ git pull後に
 
 イメージ作成
 
-    $ docker build -t tanaka0323/storage .
+    $ docker build -t dtanakax/storage .
 
 起動
 
-    $ docker run --name <name> -d -ti tanaka0323/storage
+    $ docker run --name <name> -d -ti dtanakax/storage
 
 コンテナ内へログイン
 
@@ -37,7 +37,7 @@ git pull後に
 
 ボリュームに関する他の便利な事としては、ボリュームをバックアップやレストア、マイグレーションのために使う事です。使うためには --volumes-from フラグを使って、新しいコンテナを使ってボリュームをマウントします。使うには、次のようにします。
 
-    $ docker run --name backup --volumes-from wordpress -v $(pwd):/home tanaka0323/storage tar cvf /home/wordpress.tar /var/www/html /var/lib/mysql
+    $ docker run --name backup --volumes-from wordpress -v $(pwd):/home dtanakax/storage tar cvf /home/wordpress.tar /var/www/html /var/lib/mysql
 home
 ここでは私たちは新しいコンテナを起動し、 wordpress コンテナにボリュームをマウントすることが出来ます。
 ここではローカルホストのディレクトリを /home としてマウントしました。最後に、コマンド tar を通して wordpress ボリュームを /home ディレクトリの wordpress.tar /var/www/html /var/lib/mysql ボリュームのバックアップが完了します。
@@ -47,7 +47,7 @@ home
 
 あるいは新しいコンテナのデータボリュームに、バックアップファイルを展開することが出来ます。
 
-    $ docker run --volumes-from backup -v /var/www/html -v /var/lib/mysql tanaka0323/storage tar xvf /backup/backup.tar
+    $ docker run --volumes-from backup -v /var/www/html -v /var/lib/mysql dtanakax/storage tar xvf /backup/backup.tar
 
 イメージのファイル保存 (差分を含む)
 
